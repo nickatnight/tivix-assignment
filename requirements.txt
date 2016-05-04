@@ -1,0 +1,6 @@
+coverage==4.0.3
+Django==1.8.13
+ecdsa==0.13
+Fabric==1.11.1
+paramiko==1.17.0
+pycrypto==2.6.1
