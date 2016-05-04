@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form method="POST" action="" name="post_form">
+    {% csrf_token %}
+    <input class="form-control" type="text" name="title"
+    placeholder="Enter Title Here." required />
+    <br />
+    <br />
+    <textarea class="form-control" placeholder="Enter Post Here." rows="10" name="body" required></textarea>
+    <br />
+    <hr />
+    <br />
+    <input type="submit" class="btn btn-primary"
+    value="Submit" />
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</form>
+{% endblock %}

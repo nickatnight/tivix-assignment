@@ -5,9 +5,9 @@
 <div class="container">
 
     <h3>{{ object.title }}</h3>
-    <div class="small"><em>{{ object.created }}</em> | {{ object.author }}</div>
+    <div class="small"><em>{{ object.created }}</em></div>
     <p>
-        {{ object.body }}
+        {{ object.body | linebreaks }}
     </p>
 </div>
 {% endblock %}
