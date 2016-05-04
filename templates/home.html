@@ -1,2 +1,14 @@
 {% extends 'base.html' %}
 
+{% block content %}
+
+<div class="container">
+    <div class="row">
+    {% for o in object_list %}
+        <div class="col-md-4 blocker">
+            {{o.title}}
+        </div>
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}

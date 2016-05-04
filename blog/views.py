@@ -5,5 +5,5 @@ from models import Post
 
 class PostListView(ListView):
     template_name = 'home.html'
-    paginate_by = 10
-    model = Post
+    paginate_by = 6
+    queryset = Post.objects.all()
