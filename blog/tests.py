@@ -17,3 +17,7 @@ class PageTests(TestCase):
     def test_home_page(self):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
+
+    def test_admin_page(self):
+        response = self.client.get('/admin/login/?next=/admin/')
+        self.assertEqual(response.status_code, 200)
