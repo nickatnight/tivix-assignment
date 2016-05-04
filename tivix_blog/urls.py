@@ -20,4 +20,5 @@ from blog import views
 urlpatterns = [
     url(r'^$', views.PostListView.as_view(), name='home'),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^blog/(?P<slug>\S+)$', views.BlogDetailView.as_view(), name='blog_detail'),
 ]

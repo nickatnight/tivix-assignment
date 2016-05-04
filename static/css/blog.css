@@ -18,6 +18,10 @@ h6 {
     width: 100%;
 }
 
+/*
+ *  Blog CSS
+ */
+
 .navi {
     background-color: #2cbc65;
     height: 12em;
@@ -36,4 +40,8 @@ h6 {
 
 .blocker {
     height: 20em;
+}
+
+.blocker:hover {
+    background-color: black;
 }
