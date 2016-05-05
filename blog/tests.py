@@ -93,6 +93,7 @@ class PostFormTest(TestCase):
                 'title': 'QA',
                 'body': "Quality means doing it right the first time when no one is looking."
             }
+        # follow response to account for redirect
         response = self.client.post('/blog/create-post/', form_data, follow=True)
         self.assertContains(response, 'QA')
         self.assertTrue(Post.objects.all().count(), 1)
@@ -102,6 +103,7 @@ class PostFormTest(TestCase):
                 'body': "First solve the problem, then write the code."
             }
         response = self.client.post('/blog/qa/update', form_data)
+        # updated form data will redirect to post url
         self.assertEqual(response.status_code, 302)
 
 
