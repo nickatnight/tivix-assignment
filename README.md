@@ -1,1 +1,0 @@
-# tivix-assignment

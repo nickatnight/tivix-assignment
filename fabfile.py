@@ -27,3 +27,9 @@ def run_tests():
     if not coverage_run():
         speak("Test succeeded.")
         coverage_display()
+
+def deploy_local():
+
+    run_tests()
+
+    local('python manage.py runserver')

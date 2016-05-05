@@ -2,8 +2,12 @@
 
 {% block content %}
 
-<h3>{{ object.title }} | <a href="{% url 'update_post' slug=object.slug %}" class="fa fa-pencil-square-o fa-lg"></a></h3>
-<div class="small"><em>{{ object.created }}</em></div>
+<h3 style="font-weight:bold;">
+	{{ object.title }} | <a href="{% url 'update_post' slug=object.slug %}" class="fa fa-pencil-square-o fa-lg"></a>
+</h3>
+<div class="small">
+	<em>{{ object.created }}</em>
+</div>
 <p>
     {{ object.body | linebreaks }}
 </p>

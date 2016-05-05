@@ -75,6 +75,8 @@ a {
     height: 15em;
     padding-top: 2em;
     border-radius: 10px;
+    border-color: #333;
+    border-style: dotted;
 }
 
 .blocker:hover {

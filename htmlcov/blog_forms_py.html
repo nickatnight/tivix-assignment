@@ -106,11 +106,11 @@
 <p id="t11" class="stm run hide_run">&nbsp; &nbsp; <span class="key">def</span> <span class="nam">clean_title</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
 <p id="t12" class="pln">&nbsp; &nbsp; &nbsp; &nbsp; <span class="str">&quot;&quot;&quot;</span><span class="strut">&nbsp;</span></p>
 <p id="t13" class="pln"><span class="str">&nbsp; &nbsp; &nbsp; &nbsp; Since the slugs are unique, check the title against all post titles</span><span class="strut">&nbsp;</span></p>
-<p id="t14" class="pln"><span class="str">&nbsp; &nbsp; &nbsp; &nbsp; and raise error if there is a match.</span><span class="strut">&nbsp;</span></p>
+<p id="t14" class="pln"><span class="str">&nbsp; &nbsp; &nbsp; &nbsp; and make sure we are not updating an existing post.</span><span class="strut">&nbsp;</span></p>
 <p id="t15" class="pln"><span class="str">&nbsp; &nbsp; &nbsp; &nbsp; &quot;&quot;&quot;</span><span class="strut">&nbsp;</span></p>
 <p id="t16" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="nam">t</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">cleaned_data</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="str">&#39;title&#39;</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t17" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t18" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="key">if</span> <span class="nam">t</span> <span class="key">in</span> <span class="op">[</span><span class="nam">o</span><span class="op">.</span><span class="nam">title</span> <span class="key">for</span> <span class="nam">o</span> <span class="key">in</span> <span class="nam">Post</span><span class="op">.</span><span class="nam">objects</span><span class="op">.</span><span class="nam">all</span><span class="op">(</span><span class="op">)</span><span class="op">]</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
+<p id="t18" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="key">if</span> <span class="nam">t</span> <span class="key">in</span> <span class="op">[</span><span class="nam">o</span><span class="op">.</span><span class="nam">title</span> <span class="key">for</span> <span class="nam">o</span> <span class="key">in</span> <span class="nam">Post</span><span class="op">.</span><span class="nam">objects</span><span class="op">.</span><span class="nam">all</span><span class="op">(</span><span class="op">)</span><span class="op">]</span> <span class="key">and</span> <span class="key">not</span> <span class="nam">self</span><span class="op">.</span><span class="nam">instance</span><span class="op">.</span><span class="nam">id</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
 <p id="t19" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="key">raise</span> <span class="nam">forms</span><span class="op">.</span><span class="nam">ValidationError</span><span class="op">(</span><span class="str">&quot;Can&#39;t have two posts with the same title.&quot;</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t20" class="pln"><span class="strut">&nbsp;</span></p>
 <p id="t21" class="stm run hide_run">&nbsp; &nbsp; &nbsp; &nbsp; <span class="key">return</span> <span class="nam">t</span><span class="strut">&nbsp;</span></p>
@@ -124,7 +124,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.org">coverage.py v4.0.3</a>,
-            created at 2016-05-05 10:55
+            created at 2016-05-05 12:44
         </p>
     </div>
 </div>
