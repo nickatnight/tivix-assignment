@@ -85,3 +85,26 @@ class PostFormTest(TestCase):
             })
 
         self.assertFalse(form2.is_valid())
+
+
+    def test_update_post_no_title_change(self):
+        
+        form_data = {
+                'title': 'QA',
+                'body': "Quality means doing it right the first time when no one is looking."
+            }
+        response = self.client.post('/blog/create-post/', form_data, follow=True)
+        self.assertContains(response, 'QA')
+        self.assertTrue(Post.objects.all().count(), 1)
+
+        form_data = {
+                'title': 'QA',
+                'body': "First solve the problem, then write the code."
+            }
+        response = self.client.post('/blog/qa/update', form_data)
+        self.assertEqual(response.status_code, 302)
+
+
+
+
+
