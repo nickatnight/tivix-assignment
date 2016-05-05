@@ -4,6 +4,9 @@ from django.template.defaultfilters import slugify
 
 
 class Post(models.Model):
+    """
+    Post model per assignment instructions.
+    """
     title = models.CharField(max_length=200)
     body = models.TextField()
     slug = models.SlugField(max_length=200, unique=True)

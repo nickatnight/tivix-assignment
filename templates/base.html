@@ -8,18 +8,21 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <link href="{% static 'img/ti.png' %}" rel="icon" type="image/png">
         <title>Tivix | Get Shit Done.</title>
 
         <!-- Bootstrap -->
         <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
         <link href="{% static 'css/blog.css' %}" rel="stylesheet">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Raleway:400,900' rel='stylesheet' type='text/css'>
     </head>
     <body>
         <div class="top">
 
             <div class="navi">
                 <div class="lefty">
-                    <h1>Tivix Blog</h1>
+                    <h1 style="font-weight: 900;">Tivix Blog</h1>
                 </div>
                 <div class="righty">
                     <h3><a href="{% url 'home' %}">View Posts</a> //
@@ -27,6 +30,8 @@
                 </div>
             </div>
         </div>
+        <br />
+        <br />
         <div class="container">
             {% block content %} {% endblock %}
         </div>

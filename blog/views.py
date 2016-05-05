@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import DetailView, ListView
 
@@ -16,14 +17,39 @@ class BlogDetailView(DetailView):
     model = Post
 
 
-def create_post_view(request):
-    post_form = PostForm(request.POST)
-
+def update_post_view(request, slug=None):
+    """
+    Update post by retrieving post object given the slug. Pre-populate
+    form fields with the model instance and send neccessary context
+    data to template. If the client sends post request, check if form
+    is valid, save, and redirect to the instances url.
+    """
+    instance = get_object_or_404(Post, slug=slug)
+    post_form = PostForm(request.POST or None, instance=instance)
     if post_form.is_valid():
-        print post_form['body']
         post_form.save()
+        return HttpResponseRedirect(instance.get_absolute_url())
 
     context = {
-        "post_form": post_form,
+        'post_form': post_form,
     }
+
+    return render(request, 'create_post.html', context)
+
+
+def create_post_view(request):
+    """
+    Create new post by rendering form data on post request. If form is valid,
+    save the instance and redirect to post url.
+    """
+    post_form = PostForm(request.POST or None)
+
+    if post_form.is_valid():
+        instance = post_form.save()
+        return HttpResponseRedirect(instance.get_absolute_url())
+
+    context = {
+        'post_form': post_form,
+    }
+
     return render(request, 'create_post.html', context)

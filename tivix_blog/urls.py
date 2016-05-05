@@ -21,5 +21,7 @@ urlpatterns = [
     url(r'^$', views.PostListView.as_view(), name='home'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^blog/create-post/', views.create_post_view, name='create_post'),
+    url(r'^blog/(?P<slug>\S+)/update$', views.update_post_view,
+        name='update_post'),
     url(r'^blog/(?P<slug>\S+)$', views.BlogDetailView.as_view(), name='post_detail'),
 ]

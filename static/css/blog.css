@@ -3,16 +3,23 @@
  *  Override Bootstrap's defaults.
  */
 
-h1,
+h1, .h1,
 h2,
-h3,
+h3, .h3,
 h4,
 h5,
 h6 {
     margin-top: 0;
 }
 
-@media (max-width: 768px) {
+body {
+    font-family: 'Raleway', sans-serif;
+    font-size: 18px;
+    line-height: 1.42857143;
+    color: #333;
+}
+
+/*@media (max-width: 768px) {
     .container {
         margin: 1.5em;
         width: 100%;
@@ -31,7 +38,7 @@ h6 {
         margin: 10em;
         width: 100%;
     }
-}
+}*/
 
 .top {
     padding: 0;
@@ -46,6 +53,11 @@ h6 {
     background-color: #2cbc65;
     height: 12em;
     overflow: hidden; /* 'clear' floats */
+    padding-top: 4.5em;
+}
+
+a {
+    color: #333;
 }
 
 .righty {
@@ -56,23 +68,22 @@ h6 {
 .lefty {
     margin-left: 3em;
     float: left;
+    font-weight: 900;
 }
 
 .blocker {
     height: 15em;
+    padding-top: 2em;
+    border-radius: 10px;
 }
 
 .blocker:hover {
     background-color: black;
+    color: white;
 }
 
 .format {
     margin-top: 6em;
     margin-left: 6em;
     margin-right: 6em;
-}
-
-
-textarea {
-    resize: none;
 }
