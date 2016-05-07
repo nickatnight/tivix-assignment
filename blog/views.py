@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import DetailView, ListView
@@ -23,11 +24,14 @@ def update_post_view(request, slug=None):
     form fields with the model instance and send neccessary context
     data to template. If the client sends post request, check if form
     is valid, save, and redirect to the instances url.
+
+    *slug* -> Filter post search by slug
     """
     instance = get_object_or_404(Post, slug=slug)
     post_form = PostForm(request.POST or None, instance=instance)
     if post_form.is_valid():
         post_form.save()
+        messages.success(request, "Post successfully updated.")
         return HttpResponseRedirect(instance.get_absolute_url())
 
     context = {
@@ -46,6 +50,7 @@ def create_post_view(request):
 
     if post_form.is_valid():
         instance = post_form.save()
+        messages.success(request, "Post successfully created.")
         return HttpResponseRedirect(instance.get_absolute_url())
 
     context = {

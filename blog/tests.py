@@ -13,7 +13,7 @@ class PostModelTest(TestCase):
         self.assertEqual(str(post), post.title)
 
     def test_verbose_name_plural(self):
-        self.assertEqual(str(Post._meta.verbose_name_plural), 'Post Entries')    
+        self.assertEqual(str(Post._meta.verbose_name_plural), 'Post Entries')
 
 
 class PageTests(TestCase):
@@ -21,7 +21,7 @@ class PageTests(TestCase):
     Test each page gives valid HTTP responses
     """
     def test_home_page(self):
-        response = self.client.get('/')
+        response = self.client.get('/blog/')
         self.assertEqual(response.status_code, 200)
 
     def test_admin_page(self):
@@ -35,13 +35,14 @@ class PageTests(TestCase):
         self.assertTrue('post_form' in response.context)
 
     def test_update_post_page(self):
-        post = PostForm( {
+        post = PostForm({
                 'title': 'American Pie',
-                'body': 'If you want to make an apple pie from scratch, you must first create the universe.'
+                'body': 'If you want to make an apple pie from scratch, you \
+                        must first create the universe.'
             })
         self.assertTrue(post.is_valid())
         post.save()
-        response = self.client.get('/blog/american-pie/update')
+        response = self.client.get('/blog/american-pie/update/')
         self.assertEqual(response.status_code, 200)
 
 
@@ -59,7 +60,7 @@ class PostFormTest(TestCase):
         self.assertTrue(Post.objects.all().count(), 1)
         self.assertEqual(post.title, 'One Love')
         self.assertEqual(post.body, "Two things are infinite: the universe and human stupidity; and I'm not sure about the universe.")
-        self.assertEqual(post.get_absolute_url(), '/blog/one-love')
+        self.assertEqual(post.get_absolute_url(), '/blog/one-love/')
 
     def test_empty_form(self):
         post = PostForm({})
@@ -88,7 +89,7 @@ class PostFormTest(TestCase):
 
 
     def test_update_post_no_title_change(self):
-        
+
         form_data = {
                 'title': 'QA',
                 'body': "Quality means doing it right the first time when no one is looking."
@@ -102,7 +103,7 @@ class PostFormTest(TestCase):
                 'title': 'QA',
                 'body': "First solve the problem, then write the code."
             }
-        response = self.client.post('/blog/qa/update', form_data)
+        response = self.client.post('/blog/qa/update/', form_data)
         # updated form data will redirect to post url
         self.assertEqual(response.status_code, 302)
 

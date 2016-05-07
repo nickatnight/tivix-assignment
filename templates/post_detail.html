@@ -2,11 +2,20 @@
 
 {% block content %}
 
+<!--Display success message. Context from create post. -->
+{% if messages %}
+<ul class="messages">
+{% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+
 <h3 style="font-weight:bold;">
-	{{ object.title }} | <a href="{% url 'update_post' slug=object.slug %}" class="fa fa-pencil-square-o fa-lg"></a>
+    {{ object.title }} | <a href="{% url 't-blog:update_post' slug=object.slug %}" class="fa fa-pencil-square-o fa-lg"></a>
 </h3>
 <div class="small">
-	<em>{{ object.created }}</em>
+    <em>{{ object.created }}</em>
 </div>
 <p>
     {{ object.body | linebreaks }}
