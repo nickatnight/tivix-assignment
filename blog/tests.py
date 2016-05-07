@@ -1,12 +1,12 @@
+from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
 from .models import Post
 from .forms import PostForm
-import os
 
 
 class PostModelTest(TestCase):
     """
-    Basic model tests for string representations and naming conventions
+    Basic model tests.
     """
     def test_str_representation(self):
         post = Post(title='My First Post')
@@ -14,6 +14,18 @@ class PostModelTest(TestCase):
 
     def test_verbose_name_plural(self):
         self.assertEqual(str(Post._meta.verbose_name_plural), 'Post Entries')
+
+    def test_upload_location_string(self):
+        file_upload = open('blog/davinci.jpg', 'rb')
+        form_data = {
+            'title': "Cowabunga",
+            'body': "The Teenage Mutant Ninja Turtles were my favorire cartoon\
+                    characters growing up. Moreover, I loved Michelangelo simply \
+                    for the fact he always rode a skateboard and ate pizza.",
+            'image': SimpleUploadedFile(file_upload.name, file_upload.read())
+        }
+        response = self.client.post('/blog/create-post/', form_data, follow=True)
+        self.assertEqual(response.status_code, 200)
 
 
 class PageTests(TestCase):
@@ -106,8 +118,3 @@ class PostFormTest(TestCase):
         response = self.client.post('/blog/qa/update/', form_data)
         # updated form data will redirect to post url
         self.assertEqual(response.status_code, 302)
-
-
-
-
-

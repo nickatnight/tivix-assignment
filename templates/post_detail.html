@@ -17,7 +17,12 @@
 <div class="small">
     <em>{{ object.created }}</em>
 </div>
-<p>
-    {{ object.body | linebreaks }}
-</p>
+<div class="b-img">
+    {% if object.image %}
+    <img src="{{ object.image.url }}" class="img-responsive" />
+    {% endif %}
+    <p>
+        {{ object.body | linebreaks }}
+    </p>
+</div
 {% endblock %}

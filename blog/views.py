@@ -28,7 +28,7 @@ def update_post_view(request, slug=None):
     *slug* -> Filter post search by slug
     """
     instance = get_object_or_404(Post, slug=slug)
-    post_form = PostForm(request.POST or None, instance=instance)
+    post_form = PostForm(request.POST or None, request.FILES or None, instance=instance)
     if post_form.is_valid():
         post_form.save()
         messages.success(request, "Post successfully updated.")
@@ -46,7 +46,7 @@ def create_post_view(request):
     Create new post by rendering form data on post request. If form is valid,
     save the instance and redirect to post url.
     """
-    post_form = PostForm(request.POST or None)
+    post_form = PostForm(request.POST or None, request.FILES or None)
 
     if post_form.is_valid():
         instance = post_form.save()

@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<form method="POST" action="" name="post_form">
+<form method="POST" action="" name="post_form" enctype="multipart/form-data">
     {% csrf_token %}
     {{ post_form|crispy }}
     <input type="submit" class="btn btn-primary" value="Submit" />
