@@ -20,6 +20,9 @@ Cloning the repo and running the dev server is just as easy.::
     pip install -r requirements.txt
     fab deploy_local
 
+Running fab_deploy will run the test suite, open a webpage summarzing the code
+coverage, and start the dev server.
+
 Dependencies
 ------------
 
