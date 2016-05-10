@@ -1,5 +1,7 @@
 ![tivix](http://www.tivix.com/static/global/images/apple-touch-icon-120x120.png)  
   
+[![Build
+Status](https://travis-ci.org/nickatnight/tivix-assignment.svg?branch=master)](https://travis-ci.org/nickatnight/tivix-assignment)
 [![Coverage
 Status](https://coveralls.io/repos/github/nickatnight/tivix-assignment/badge.svg?branch=master)](https://coveralls.io/github/nickatnight/tivix-assignment?branch=master)
   

@@ -1,5 +1,7 @@
 from fabric.api import *
 from fabric.colors import red
+from fabric.contrib.console import confirm
+from fabric.operations import prompt
 import platform
 
 
@@ -13,9 +15,9 @@ WEBHOOK_URL = 'Your custom assigned webhook url from slack api.'
 CHANNEL = 'Desired channel to post to.'
 
 
-def git_slack(msg=None):
+def slacker(msg):
     """
-    Slack/GitHub integration.
+    Slack integration.
 
     *msg* -> Message to be written to channel board and commit.
     """
@@ -28,13 +30,8 @@ def git_slack(msg=None):
         print red('No message specified.')
         return False
 
-    # Textbook git commands
-    local('git add .')
-    local('git commit -m '+msg)
-    local('git push origin master')
-
     # Escape the string since slack is very picky on payload format.
-    escaped_text = msg.replace('"', '\\"').replace("'", "\\'")
+    escaped_text = msg_info.replace('"', '\\"').replace("'", "\\'")
 
     # Format the json payload
     json = "{\"channel\": \""+CHANNEL+"\", \"text\": \""+escaped_text+"\",\
@@ -42,6 +39,16 @@ def git_slack(msg=None):
 
     # Post the payload
     local('curl -d "payload='+json+'" '+WEBHOOK_URL)
+
+
+def git_sum(msg):
+    # Textbook git commands
+    local('git add .')
+    local('git commit -m "'+msg+'"')
+    local('git push origin master')
+
+    # Uncomment following line if slack api info defined
+    # slacker(msg)
 
 
 def speak(msg, wait=False):
@@ -81,7 +88,7 @@ def coverage_display():
     """
     local('coverage html')
 
-    local('open htmlcov/index.html')
+    # local('open htmlcov/index.html')
 
 
 def run_tests():
@@ -99,4 +106,7 @@ def deploy_local():
     """
     run_tests()
     delete_pyc()
+    if confirm("Would you like to push to GitHub?"):
+        msg = prompt("Enter commit message: ")
+        git_sum(msg)
     local('python manage.py runserver')
