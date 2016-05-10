@@ -5,5 +5,5 @@ install:
   - pip install -r requirements.txt
   - pip install coveralls
 script:
-  - coverage run --include='./*' -- branch manage.py test
+  - coverage run --include='./*' --branch manage.py test
 after_success: coveralls
