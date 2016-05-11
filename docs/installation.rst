@@ -1,7 +1,7 @@
 Installation
 ============
 
-For developers, installation is very easy. First, check to verify you are
+For contributors, installation is very easy. First, check to verify you are
 running Python 2.7.::
 
     python -V
@@ -36,10 +36,11 @@ Dependencies
 Configuration
 -------------
 
-Add ``"blog"`` to you project's ``INSTALLED_APPS`` setting::
+Add ``"blog"`` and ``"crispy_forms"`` to your project's ``INSTALLED_APPS`` setting::
 
     INSTALLED_APPS = (
         ...
+        'crispy_forms',
         'blog',
         ...
     )
@@ -51,8 +52,26 @@ Add associated URLS::
         url(r'^blog/', include("blog.urls", namespace='t-blog'))
     )
 
-Note: We give a namespace to avoid url conflicts with other apps using the same
-named url.
+.. note:: We give a namespace to avoid url conflicts with other apps using the same named urls.
 
 
 Everything is now set!
+
+Development
+-----------
+
+Working with a team of developers to improve this application? If your team is
+on Slack, you can easily add your webhook url and channel name to the fabfile.
+Once ``fab deploy_local`` is ran, the user will be prompted to push to GitHub.
+After entering the desired commit message, your code will be pushed and a
+customized message will be sent to your message board. Just make sure to
+uncomment the ``slacker(msg)`` routine in the fabfile::
+
+    def git_sum(msg):
+        # Textbook git commands
+        local('git add .')
+        local('git commit -m "'+msg+'"')
+        local('git push origin master')
+
+        slacker(msg) <----- Uncomment
+

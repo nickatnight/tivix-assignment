@@ -63,7 +63,7 @@ def speak(msg, wait=False):
     elif 'Linux' in platform.system():
         local('echo "%s" | espeak%s' % (msg, wait and ' ' or ' &'))
     else:
-        print red('Unable to use this function.')
+        print red('Looks like a cat got your tounge.\nUnable to use this function.')
 
 
 def delete_pyc():
@@ -88,7 +88,7 @@ def coverage_display():
     """
     local('coverage html')
 
-    # local('open htmlcov/index.html')
+    local('open htmlcov/index.html')
 
 
 def run_tests():

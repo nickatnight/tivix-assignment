@@ -6,9 +6,13 @@
 Welcome to the Tivix-Blog documentation!
 ============================================
 
+.. image:: http://www.tivix.com/static/global/images/apple-touch-icon-120x120.png
+   :align: center
+
 This application was given to me as an assignment from the folks over at Tivix.
 They are a software consulting firm based out of San Francisco, CA. The blog
-supports basic blogging functions (create/update).
+supports basic blogging functions (create/update), along with some third party
+api integration for developers.
 
 Contents:
 

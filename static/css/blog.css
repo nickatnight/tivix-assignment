@@ -52,10 +52,15 @@ a {
     float: right;
 }
 
+.righty a {
+    color: white;
+}
+
 .lefty {
     margin-left: 3em;
     float: left;
     font-weight: 900;
+    color: white;
 }
 
 .blocker {
